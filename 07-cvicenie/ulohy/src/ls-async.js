@@ -15,6 +15,7 @@ module.exports = lsRescursive;
 //     .then(files => files.map(({ name }) => name));
 // }
 
+<<<<<<< HEAD
 async function lsRescursive(dirName) {
   let dirs = await ls(dirName);
   dirs = dirsOnly(dirs).map(({ name }) => name);
@@ -23,6 +24,19 @@ async function lsRescursive(dirName) {
   files = [].concat(...files);
   files = filesOnly(files);
   return files.map(({ name }) => name);
+=======
+  return ls(dirName)
+    // .then(dirsOnly)
+    // .then(dirs => dirs.map(({ name }) => name))
+    // .then(dirs => dirs.map(name => path.resolve(dirName, name)))
+    // .then(dirs => dirs.map(ls)) // [] of Promises of []s
+    // .then(files => Promise.all(files)) // Promise of [] of []s
+    // .then(files => [].concat(...files)) // [[],[],...]-> [.,.,.]
+    // .then(filesOnly)
+    // .then((files) =>
+    //   files.map(({ name }) => name)
+    // )
+>>>>>>> upstream/master
 }
 
 async function ls(dirName) {
