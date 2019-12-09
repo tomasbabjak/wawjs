@@ -3,8 +3,8 @@ const and = (f1, ...fns) => x => !!fns.reduce(
   f1(x)
 );
 
-//const and = (f1, ...fns) => x =>
-//  !!f1(x) && (fns.length ? and(...fns)(x) : true);
+const and = (f1, ...fns) => x =>
+ !!f1(x) && (fns.length ? and(...fns)(x) : true);
 
 // TODO: reimplement using recursion
 // and quick exit, avoid useles loop of whole array

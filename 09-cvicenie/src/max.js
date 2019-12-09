@@ -45,7 +45,8 @@ const maxNegativeInteger =
 const { isStringObject } = require("util").types;
 const isString = s => typeof s === "string";
 const concat = 
-//   
+//const concat = filterArgs(String.prototype.concat.bind(''), (x) => typeof x === "string")
+
 const concatSafe = fn(concat, or(isNumber, isString, isStringObject));
 
 

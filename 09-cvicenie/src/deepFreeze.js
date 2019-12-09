@@ -8,7 +8,7 @@ module.exports = function(o) {
   });
   return o;
 }
-//module.exports = function(o) {
+//  module.exports = function(o) {
 //	traverse(o).forEach( function(k,v,o) {Object.freeze(v)} );
 
 //-------------------------- tests ----------------------------------------
