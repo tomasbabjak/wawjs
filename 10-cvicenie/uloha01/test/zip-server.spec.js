@@ -14,7 +14,7 @@ describe("Zipper Tests", function() {
     it("Server is unreachable", () => {
 
         client(textFile).on('close', () => {
-            assert(!fs.existsSync(`${__dirname}/${path.parse(textFile).base}.gz`));
+            assert(!fs.existsSync(`${__dirname}/${path.parse(textFile).base}.gz`), 'Server unreachable');
         });
     });
 
@@ -47,6 +47,7 @@ describe("Zipper Tests", function() {
         });
     });
 
+    //My test, well modified xminarikd's test
     it("It should sent text file", function (done) {
         this.timeout(2000);
 
@@ -76,3 +77,19 @@ describe("Zipper Tests", function() {
     });
 
 });
+
+describe("Client <--> Server client error", function () {
+
+    it("close client during request", function () {
+        
+        const srv = server().listen(8080);
+
+        const myClient = client('./test/test.md').on('close', () => {
+            srv.close();
+        });
+
+        setTimeout(function () {
+            myClient.destroy();
+        }, 11);
+    });
+})

@@ -26,7 +26,8 @@ function clientZip(filePath) {
 
     fileRead.pipe(req).on("error", (err) => {
         console.log('Request failed', err);
-        fs.unlinkSync(`${filePath}.gz`);
+        if (!fs.existsSync(`${filePath}.gz`))
+            fs.unlinkSync(`${filePath}.gz`);
     });
 
     req.on("response", (res) => {
