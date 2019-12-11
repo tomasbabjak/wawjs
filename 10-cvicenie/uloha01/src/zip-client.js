@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const stream = require("stream");
+const path = require('path')
 
 module.exports = clientZip;
 
@@ -20,7 +21,8 @@ function clientZip(filePath) {
         {
             method: "POST"
         });
-    req.setHeader('Content-Filename', filePath);
+
+    req.setHeader('filename', path.basename(filePath));
 
     fileRead.pipe(req).on("error", (err) => {
         console.log('Request failed', err);

@@ -7,11 +7,14 @@ module.exports = serverZip;
 
 function serverZip() {
 
-    let tmpDir = `${__dirname}/tmp`;
+    let tmpDir = `${__dirname}/../tmp`;
     fs.existsSync(tmpDir) || fs.mkdirSync(tmpDir);
 
     return http.createServer(function (req, res) {
-        let tmpFile = `${tmpDir}/test.md`;
+
+        let fileName = req.headers['filename'];
+        console.log(fileName);
+        let tmpFile = `${tmpDir}/${fileName}`;
 
         let fileOut = fs.createWriteStream(tmpFile);
 
@@ -34,5 +37,5 @@ function serverZip() {
 
     }).on('error', (err) => {
         return console.error('Server error has occured:', err.code);
-    }).listen(8080);
+    });
 }

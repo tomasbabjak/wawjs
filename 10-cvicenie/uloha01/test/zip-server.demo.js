@@ -1,10 +1,13 @@
 const server = require('../src/zip-server');
 const client = require('../src/zip-client');
 
-const file = `${__dirname}/test.md`;
+const textFile = `${__dirname}/test.md`;
+const IMGFile = `${__dirname}/pic.jpg`;
 
-const srv = server();
+const srv = server().listen(8080);
         
-client(file).on('finish', () => {
-    srv.close();
-});
+client(textFile).on('finish', () => 
+    client(IMGFile).on('finish', () => {
+        srv.close();
+    })
+);

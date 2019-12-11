@@ -1,4 +1,3 @@
-//
 const { Transform } = require("stream");
 
 module.exports = {
